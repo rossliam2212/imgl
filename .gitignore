@@ -2,3 +2,4 @@
 build/
 tests/
 README.md
+.clang-format
