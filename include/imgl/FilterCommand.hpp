@@ -7,15 +7,20 @@
 #ifndef FILTERCOMMAND_HPP
 #define FILTERCOMMAND_HPP
 
+#include <iostream>
 #include "ICommand.hpp"
+#include "CommandData.hpp"
 
 namespace imgl {
     class FilterCommand : public ICommand {
     public:
-        FilterCommand();
+        FilterCommand(const FilterCommandData& data);
         ~FilterCommand() override = default;
 
         void execute() override;
+
+    private:
+        FilterCommandData data;
     };
 } // namespace imgl
 
