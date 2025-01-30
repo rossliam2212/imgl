@@ -7,13 +7,12 @@
 #include "imgl/CLIParser.hpp"
 
 namespace imgl {
-	 CLIParser::CLIParser()
-		 : app{"[imgl] A cli tool for manipulating images"} {
-	 }
+	CLIParser::CLIParser()
+		: app{"[imgl] A cli tool for manipulating images"} {
+	 	filterHandler.setup(app);
+	}
 
 	void CLIParser::parse(int argc, char** argv) {
-		filterHandler.setup(app);
-
 		try {
 			app.require_subcommand(1);
 			app.parse(argc, argv);

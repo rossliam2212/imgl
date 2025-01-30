@@ -9,6 +9,7 @@
 
 #include <CLI/CLI.hpp>
 
+#include "Defines.hpp"
 #include "CommandData.hpp"
 
 namespace imgl {
