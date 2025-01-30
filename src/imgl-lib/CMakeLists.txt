@@ -1,10 +1,16 @@
 set(LIB_HEADERS
         ../../include/imgl/ICommand.hpp
         ../../include/imgl/FilterCommand.hpp
+        ../../include/imgl/CLIParser.hpp
+        ../../include/imgl/CommandData.hpp
+        ../../include/imgl/FilterCommandHandler.hpp
+        ../../include/imgl/Defines.hpp
 )
 
 set(LIB_SOURCES
         FilterCommand.cpp
+        CLIParser.cpp
+        FilterCommandHandler.cpp
 )
 
 set(LIB_INCLUDES
@@ -21,10 +27,9 @@ target_link_libraries(${LIB_NAME} PUBLIC
         GLEW::GLEW
         glm::glm
         spdlog::spdlog
-        cli11
+        CLI11::CLI11
 )
 target_include_directories(${LIB_NAME} PUBLIC ${LIB_INCLUDES})
-target_link_directories(${LIB_NAME} PUBLIC ${CURLPP_LIBRARY_DIRS})
 
 if(${ENABLE_WARNINGS})
     target_set_warnings(${LIB_NAME} ${ENABLE_WARNINGS} ${ENABLE_WARNINGS_AS_ERRORS})
