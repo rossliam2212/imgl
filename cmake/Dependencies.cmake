@@ -8,7 +8,7 @@ function(setup_dependencies)
     find_package(GLEW REQUIRED)
     find_package(glm REQUIRED)
     find_package(spdlog REQUIRED)
-    find_package(cli11 REQUIRED)
+    find_package(CLI11 REQUIRED)
 
     # Catch2
     CPMAddPackage(
