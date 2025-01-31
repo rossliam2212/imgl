@@ -16,6 +16,15 @@ namespace imgl {
 		std::string outputPath;
 		float intensity;
 	};
+
+	struct TransformCommandData {
+		std::string transformType;
+		std::string inputPath;
+		std::string outputPath;
+		float width;
+		float height;
+		float angle;
+	};
 } // namespace imgl
 
 #endif //COMMANDDATA_HPP
