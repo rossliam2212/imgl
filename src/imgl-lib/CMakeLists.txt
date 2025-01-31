@@ -5,12 +5,16 @@ set(LIB_HEADERS
         ../../include/imgl/CommandData.hpp
         ../../include/imgl/FilterCommandHandler.hpp
         ../../include/imgl/Defines.hpp
+        ../../include/imgl/TransformCommand.hpp
+        ../../include/imgl/TransformCommandHandler.hpp
 )
 
 set(LIB_SOURCES
         FilterCommand.cpp
         CLIParser.cpp
         FilterCommandHandler.cpp
+        TransformCommand.cpp
+        TransformCommandHandler.cpp
 )
 
 set(LIB_INCLUDES
