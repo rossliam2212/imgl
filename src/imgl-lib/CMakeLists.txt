@@ -8,6 +8,7 @@ set(LIB_HEADERS
         ../../include/imgl/TransformCommand.hpp
         ../../include/imgl/TransformCommandHandler.hpp
         ../../include/imgl/FileUtils.hpp
+        ../../include/imgl/Image.hpp
 )
 
 set(LIB_SOURCES
@@ -17,10 +18,12 @@ set(LIB_SOURCES
         TransformCommand.cpp
         TransformCommandHandler.cpp
         FileUtils.cpp
+        Image.cpp
 )
 
 set(LIB_INCLUDES
         ../../include/
+        ../../lib/
         ${CMAKE_BINARY_DIR}/configured_files/include
 )
 
