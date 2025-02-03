@@ -10,7 +10,9 @@
 #include <CLI/CLI.hpp>
 
 #include "FilterCommand.hpp"
+#include "TransformCommand.hpp"
 #include "FilterCommandHandler.hpp"
+#include "TransformCommandHandler.hpp"
 
 namespace imgl {
     class CLIParser {
@@ -23,6 +25,7 @@ namespace imgl {
     private:
         CLI::App app;
         FilterCommandHandler filterHandler;
+        TransformCommandHandler transformHandler;
     };
 } // namespace imgl
 

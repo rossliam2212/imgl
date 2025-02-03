@@ -22,7 +22,10 @@ namespace imgl {
 	}
 
 	TransformCommandHandler::operator bool() const {
-		return transformHandler;
+		if (*transformHandler) {
+			return true;
+		}
+		return false;
 	}
 
 	TransformCommandData TransformCommandHandler::getData() const {

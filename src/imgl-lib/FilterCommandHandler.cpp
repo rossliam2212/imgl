@@ -21,7 +21,10 @@ namespace imgl {
 	}
 
 	FilterCommandHandler::operator bool() const {
-		return filterHandler;
+		if (*filterHandler) {
+			return true;
+		}
+    	return false;
 	}
 
 	FilterCommandData FilterCommandHandler::getData() const {
