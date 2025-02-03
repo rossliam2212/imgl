@@ -10,6 +10,7 @@ set(LIB_HEADERS
         ../../include/imgl/FileUtils.hpp
         ../../include/imgl/Image.hpp
         ../../include/imgl/ImageProcessor.hpp
+        ../../include/imgl/RenderContext.hpp
 )
 
 set(LIB_SOURCES
@@ -21,6 +22,7 @@ set(LIB_SOURCES
         FileUtils.cpp
         Image.cpp
         ImageProcessor.cpp
+        RenderContext.cpp
 )
 
 set(LIB_INCLUDES
