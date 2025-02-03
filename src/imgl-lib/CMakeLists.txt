@@ -7,6 +7,7 @@ set(LIB_HEADERS
         ../../include/imgl/Defines.hpp
         ../../include/imgl/TransformCommand.hpp
         ../../include/imgl/TransformCommandHandler.hpp
+        ../../include/imgl/FileUtils.hpp
 )
 
 set(LIB_SOURCES
@@ -15,6 +16,7 @@ set(LIB_SOURCES
         FilterCommandHandler.cpp
         TransformCommand.cpp
         TransformCommandHandler.cpp
+        FileUtils.cpp
 )
 
 set(LIB_INCLUDES
