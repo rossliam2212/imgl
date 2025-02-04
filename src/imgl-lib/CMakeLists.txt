@@ -12,6 +12,7 @@ set(LIB_HEADERS
         ../../include/imgl/ImageProcessor.hpp
         ../../include/imgl/RenderContext.hpp
         ../../include/imgl/FrameBuffer.hpp
+        ../../include/imgl/Shader.hpp
 )
 
 set(LIB_SOURCES
@@ -25,6 +26,7 @@ set(LIB_SOURCES
         ImageProcessor.cpp
         RenderContext.cpp
         FrameBuffer.cpp
+        Shader.cpp
 
         ../../lib/stb-image/stb_image.cpp
 )
