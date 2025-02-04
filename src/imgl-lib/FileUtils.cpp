@@ -14,4 +14,22 @@ namespace imgl::utils {
 	bool directoryExists(const std::string_view dirPath) {
 		return fs::exists(dirPath) && fs::is_directory(dirPath);
 	}
+
+	std::string readFile(std::string_view filePath) {
+		std::string content;
+		std::ifstream fileStream{filePath.data(), std::ios::in};
+
+		if (!fileStream.is_open()) {
+			return "";
+		}
+
+		std::string line{};
+		while (!fileStream.eof()) {
+			std::getline(fileStream, line);
+			content.append(line + "\n");
+		}
+
+		fileStream.close();
+		return content;
+	}
 } // namespace imgl::utils
