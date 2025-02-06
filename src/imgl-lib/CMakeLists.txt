@@ -31,6 +31,7 @@ set(LIB_SOURCES
         RenderUtils.cpp
 
         ../../lib/stb-image/stb_image.cpp
+        ../../lib/stb-image/stb_image_write.cpp
 )
 
 set(LIB_INCLUDES
