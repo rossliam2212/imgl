@@ -18,7 +18,7 @@
 namespace imgl {
 	class Shader {
 	public:
-		Shader(const char* fragmentPath);
+		Shader(const char* vertexPath, const char* fragmentPath);
 		~Shader();
 
 		void enable() const;
@@ -35,8 +35,8 @@ namespace imgl {
 		const char* vertexCode;
 		const char* fragmentCode;
 
-		void compile(const char* fragmentPath);
-		void create(const char* code) const;
+		void compile(const char* vertexPath, const char* fragmentPath);
+		void create(const char* code, unsigned int type) const;
 	};
 } // namespace imgl
 
