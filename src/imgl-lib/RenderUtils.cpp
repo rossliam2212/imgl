@@ -12,19 +12,16 @@ namespace imgl {
 
 	void RenderUtils::render() {
 		if (VAO == 0) {
-			// Define the vertices of a full-screen quad (two triangles)
 			constexpr float vertices[] = {
-				// Positions   // Texture Coords
-				-1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-				-1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
-				 1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+				-1.0f,  1.0f,  0.0f, 1.0f,
+				-1.0f, -1.0f,  0.0f, 0.0f,
+				 1.0f, -1.0f,  1.0f, 0.0f,
 
-				-1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-				 1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
-				 1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+				-1.0f,  1.0f,  0.0f, 1.0f,
+				 1.0f, -1.0f,  1.0f, 0.0f,
+				 1.0f,  1.0f,  1.0f, 1.0f
 			};
 
-			// Generate VAO & VBO
 			glGenVertexArrays(1, &VAO);
 			glBindVertexArray(VAO);
 
@@ -32,18 +29,23 @@ namespace imgl {
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-			// Position attribute
 			glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 			glEnableVertexAttribArray(0);
 
-			// Texture coordinate attribute
 			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 			glEnableVertexAttribArray(1);
 		}
-
-		// Bind VAO and draw quad
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 		glBindVertexArray(0);
+	}
+
+	void RenderUtils::cleanup() {
+		if (VAO != 0) {
+			glDeleteVertexArrays(1, &VAO);
+		}
+		if (VBO != 0) {
+			glDeleteBuffers(1, &VBO);
+		}
 	}
 } // namespace imgl

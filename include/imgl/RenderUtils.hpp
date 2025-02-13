@@ -17,6 +17,7 @@ namespace imgl {
     	~RenderUtils() = default;
 
 		static void render();
+		static void cleanup();
 };
 } // namespace imgl
 
