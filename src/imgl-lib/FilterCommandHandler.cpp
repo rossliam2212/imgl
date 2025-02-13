@@ -17,7 +17,7 @@ namespace imgl {
 		filterHandler->add_option(FILTER_OPTION_OUTPUT, data.outputPath, "Path to output image")
     		->required();
 		filterHandler->add_option(FILTER_OPTION_INTENSITY, data.intensity, "Intensity of the filter")
-    		->default_val(0.0);
+    		->default_val(1.f);
 	}
 
 	FilterCommandHandler::operator bool() const {
