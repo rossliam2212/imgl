@@ -19,13 +19,15 @@ namespace imgl {
 
 		void bind() const;
 		void unbind() const;
+		bool complete();
 		unsigned int getTexture() const;
 
 	private:
-		unsigned int fbo;
-		unsigned int texture;
+		unsigned int fbo{0};
+		unsigned int texture{0};
 		int width;
 		int height;
+
 	};
 } // namespace imgl
 
