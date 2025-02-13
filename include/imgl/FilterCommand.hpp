@@ -7,9 +7,13 @@
 #ifndef FILTERCOMMAND_HPP
 #define FILTERCOMMAND_HPP
 
-#include <iostream>
+#include <unordered_set>
+
 #include "ICommand.hpp"
 #include "CommandData.hpp"
+#include "Defines.hpp"
+#include "FileUtils.hpp"
+#include "ImageProcessor.hpp"
 
 namespace imgl {
     class FilterCommand : public ICommand {
@@ -21,6 +25,9 @@ namespace imgl {
 
     private:
         FilterCommandData data;
+
+        bool validFilterType() const;
+        bool validInputPath() const;
     };
 } // namespace imgl
 
