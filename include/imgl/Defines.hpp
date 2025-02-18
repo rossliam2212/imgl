@@ -10,6 +10,8 @@
 #include <string>
 
 namespace imgl {
+	inline const char* DEBUG_OPTION{"-d,--debug"};
+
 	inline const char* FILTER_CMD{"filter"};
 	inline const char* FILTER_OPTION_TYPE{"type"};
 	inline const char* FILTER_OPTION_INPUT{"input"};

@@ -26,6 +26,7 @@ namespace imgl {
         CLI::App app;
         FilterCommandHandler filterHandler;
         TransformCommandHandler transformHandler;
+        bool debug{false};
     };
 } // namespace imgl
 

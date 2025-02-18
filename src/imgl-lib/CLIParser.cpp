@@ -9,6 +9,8 @@
 namespace imgl {
 	CLIParser::CLIParser()
 		: app{"[imgl] A cli tool for manipulating images"} {
+
+		app.add_option(DEBUG_OPTION, debug, "Enable debugging logs");
 	 	filterHandler.setup(app);
 		transformHandler.setup(app);
 	}
