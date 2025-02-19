@@ -11,10 +11,11 @@
 
 namespace imgl {
 	struct FilterCommandData {
-		std::string filterType; // TODO Could make the filter type an enum...
+		std::string filterType;
 		std::string inputPath;
 		std::string outputPath;
 		float intensity;
+		bool show;
 	};
 
 	struct TransformCommandData {
@@ -24,6 +25,7 @@ namespace imgl {
 		float width;
 		float height;
 		float angle;
+		bool show;
 	};
 } // namespace imgl
 

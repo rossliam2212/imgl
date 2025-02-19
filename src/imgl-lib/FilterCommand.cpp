@@ -23,6 +23,11 @@ namespace imgl {
 			} else if (data.filterType == FILTER_TYPE_GRAYSCALE) {
 				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::GRAYSCALE);
 			}
+
+			if (data.show) {
+				const std::string cmd{"open " + data.outputPath};
+				std::system(cmd.c_str());
+			}
 		}
 	}
 

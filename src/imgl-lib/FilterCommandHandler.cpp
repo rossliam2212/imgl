@@ -21,7 +21,8 @@ Supported filter types:
 
     	filterHandler->footer(R"(Examples:
   imgl filter sharpen ~/image.jpg --output ~/sharpened.png --intensity=1.5
-  imgl filter grayscale ~/image.jpg --output ~/gray.png --intensity=0.5
+  imgl filter grayscale ~/image.jpg -o ~/gray.png --intensity=0.5
+  imgl filter box-blur ~/image.jpg -o ~/blur.png --intensity=1 --show=true
 )");
 
 		filterHandler->add_option(FILTER_OPTION_TYPE, data.filterType, "Type of filter to apply")
@@ -32,6 +33,8 @@ Supported filter types:
     		->required();
 		filterHandler->add_option(FILTER_OPTION_INTENSITY, data.intensity, "Intensity of the filter")
     		->default_val(0.f);
+    	filterHandler->add_option(FILTER_OPTION_SHOW, data.show, "Show the resulting image")
+    		->default_val(false);
 	}
 
 	FilterCommandHandler::operator bool() const {

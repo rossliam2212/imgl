@@ -17,6 +17,7 @@ namespace imgl {
 	inline const char* FILTER_OPTION_INPUT{"input"};
 	inline const char* FILTER_OPTION_OUTPUT{"-o,--output"};
 	inline const char* FILTER_OPTION_INTENSITY{"--intensity"};
+	inline const char* FILTER_OPTION_SHOW{"--show"};
 
 	const std::string FILTER_TYPE_SHARPEN{"sharpen"};
 	const std::string FILTER_TYPE_BOX_BLUR{"box-blur"};
