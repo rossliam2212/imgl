@@ -8,7 +8,21 @@
 
 namespace imgl {
     void FilterCommandHandler::setup(CLI::App& app) {
-    	filterHandler = app.add_subcommand(FILTER_CMD, "Apply image filters");
+    	filterHandler = app.add_subcommand(FILTER_CMD);
+
+    	filterHandler->description(R"(This subcommand applies various image filters.
+
+Supported filter types:
+- sharpen        [min: 0.0 | max: 2.0]
+- box-blur       [min: 0.0 | max: 1.0]
+- gaussian-blur  [min: 0.0 | max: 1.0]
+- grayscale      [min: 0.0 | max: 1.0]
+)");
+
+    	filterHandler->footer(R"(Examples:
+  imgl filter sharpen ~/image.jpg --output ~/sharpened.png --intensity=1.5
+  imgl filter grayscale ~/image.jpg --output ~/gray.png --intensity=0.5
+)");
 
 		filterHandler->add_option(FILTER_OPTION_TYPE, data.filterType, "Type of filter to apply")
     		->required();
@@ -17,7 +31,7 @@ namespace imgl {
 		filterHandler->add_option(FILTER_OPTION_OUTPUT, data.outputPath, "Path to output image")
     		->required();
 		filterHandler->add_option(FILTER_OPTION_INTENSITY, data.intensity, "Intensity of the filter")
-    		->default_val(1.f);
+    		->default_val(0.f);
 	}
 
 	FilterCommandHandler::operator bool() const {
