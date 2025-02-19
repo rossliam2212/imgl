@@ -9,7 +9,12 @@
 namespace imgl {
     Image::Image(const char* path) {
 	    loadFromFile(path);
-    	createTexture();
+
+    	if (data) {
+    		createTexture();
+    	} else {
+    		throw std::runtime_error("Error loading image");
+    	}
     }
 
 	Image::~Image() {
@@ -40,6 +45,7 @@ namespace imgl {
     }
 
 	void Image::loadFromFile(const char* path) {
+    	// TODO Error handling
 		data = stbi_load(path, &width, &height, &channels, 0);
     }
 
@@ -52,7 +58,8 @@ namespace imgl {
     	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    	const int format = channels == 4 ? GL_RGBA : GL_RGB;
+    	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
     	glGenerateMipmap(GL_TEXTURE_2D);
 
     	glBindTexture(GL_TEXTURE_2D, 0);

@@ -9,6 +9,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <stdexcept>
 
 #include "stb-image/stb_image.h"
 
