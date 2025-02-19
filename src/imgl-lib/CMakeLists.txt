@@ -47,7 +47,6 @@ target_link_libraries(${LIB_NAME} PUBLIC
         OpenGL::GL
         glfw
         GLEW::GLEW
-        glm::glm
         spdlog::spdlog
         CLI11::CLI11
 )
