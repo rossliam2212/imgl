@@ -18,16 +18,22 @@
 #include "stb-image/stb_image_write.h"
 
 namespace imgl {
+	enum class FilterType {
+		SHARPEN,
+		BOX_BLUR,
+		GAUSSIAN_BLUR,
+		GRAYSCALE
+	};
+
 	class ImageProcessor {
 	public:
     	ImageProcessor() = default;
     	~ImageProcessor() = default;
 
-		static void applySharpenFilter(Image& img, std::string_view outputPath, float intensity);
-		static void applyGaussianBlurFilter(Image& img, std::string_view outputPath, float intensity);
-		static void applyGrayscaleFilter(Image& img, std::string_view outputPath, float intensity);
+		static void applyFilter(Image& img, std::string_view outputPath, float intensity, FilterType filterType);
 
 	private:
+		static Shader retrieveShader(FilterType filterType);
 		static void outputImage(const FrameBuffer& fbo, std::string_view outputPath, int width, int height, int channels);
 	};
 } // namespace imgl

@@ -15,11 +15,11 @@ namespace imgl {
 		if (validFilterType() && validInputPath()) {
 			Image img{data.inputPath.c_str()};
 			if (data.filterType == FILTER_TYPE_SHARPEN) {
-				ImageProcessor::applySharpenFilter(img, data.outputPath, data.intensity);
+				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::SHARPEN);
 			} else if (data.filterType == FILTER_TYPE_BLUR) {
-				ImageProcessor::applyGaussianBlurFilter(img, data.outputPath, data.intensity);
+				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::GAUSSIAN_BLUR);
 			} else if (data.filterType == FILTER_TYPE_GRAYSCALE) {
-				ImageProcessor::applyGrayscaleFilter(img, data.outputPath, data.intensity);
+				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::GRAYSCALE);
 			}
 		}
 	}

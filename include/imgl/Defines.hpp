@@ -34,6 +34,9 @@ namespace imgl {
 
 	inline const char* DEFAULT_VERT_SHADER{"../../../resources/shaders/default_vertex.glsl"};
 	inline const char* SHARPEN_FRAG_SHADER{"../../../resources/shaders/sharpen_fragment.glsl"};
+	inline const char* BOX_BLUR_FRAG_SHADER{"../../../resources/shaders/box_blur_fragment.glsl"};
+	inline const char* GAUSSIAN_BLUR_FRAG_SHADER{"../../../resources/shaders/gaussian_blur_fragment.glsl"};
+	inline const char* GRAY_SCALE_FRAG_SHADER{"../../../resources/shaders/grayscale_fragment.glsl"};
 
 	inline const char* EXTENSION_PNG{".png"};
 	inline const char* EXTENSION_JPG{".jpg"};

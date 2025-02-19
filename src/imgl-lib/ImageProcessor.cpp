@@ -7,7 +7,7 @@
 #include "imgl/ImageProcessor.hpp"
 
 namespace imgl {
-	void ImageProcessor::applySharpenFilter(Image& img, std::string_view outputPath, float intensity) {
+	void ImageProcessor::applyFilter(Image& img, std::string_view outputPath, float intensity, FilterType filterType) {
 		const int width = img.getWidth();
 		const int height = img.getHeight();
 		const int channels = img.getChannels();
@@ -15,30 +15,37 @@ namespace imgl {
 		FrameBuffer fbo{width, height};
 		fbo.bind();
 
-		Shader sharpenShader{DEFAULT_VERT_SHADER, SHARPEN_FRAG_SHADER};
-		sharpenShader.enable();
+		Shader shader = retrieveShader(filterType);
+		shader.enable();
 
 		// TODO move to Image class...
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, img.getTexture());
-		sharpenShader.setInt("image", 0);
-		sharpenShader.setFloat("intensity", intensity);
+		shader.setInt("image", 0);
+		shader.setFloat("intensity", intensity);
 
 		RenderUtils::render();
 
 		outputImage(fbo, outputPath, width, height, channels);
 
 		fbo.unbind();
-		sharpenShader.disable();
+		shader.disable();
 		RenderUtils::cleanup();
 	}
 
-	void ImageProcessor::applyGaussianBlurFilter(Image& img, std::string_view outputPath, float intensity) {
-
-	}
-
-	void ImageProcessor::applyGrayscaleFilter(Image& img, std::string_view outputPath, float intensity) {
-
+	Shader ImageProcessor::retrieveShader(const FilterType filterType) {
+		switch (filterType) {
+			case FilterType::SHARPEN:
+				return {DEFAULT_VERT_SHADER, SHARPEN_FRAG_SHADER};
+			case FilterType::BOX_BLUR:
+				return {DEFAULT_VERT_SHADER, BOX_BLUR_FRAG_SHADER};
+			case FilterType::GAUSSIAN_BLUR:
+				return {DEFAULT_VERT_SHADER, GAUSSIAN_BLUR_FRAG_SHADER};
+			case FilterType::GRAYSCALE:
+				return {DEFAULT_VERT_SHADER, GRAY_SCALE_FRAG_SHADER};
+			default:
+				throw std::runtime_error("Unknown filter type");
+		}
 	}
 
 	void ImageProcessor::outputImage(const FrameBuffer& fbo, const std::string_view outputPath, const int width, const int height, const int channels) {
