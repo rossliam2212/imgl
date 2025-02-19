@@ -19,7 +19,8 @@ namespace imgl {
 	inline const char* FILTER_OPTION_INTENSITY{"--intensity"};
 
 	const std::string FILTER_TYPE_SHARPEN{"sharpen"};
-	const std::string FILTER_TYPE_BLUR{"blur"};
+	const std::string FILTER_TYPE_BOX_BLUR{"box-blur"};
+	const std::string FILTER_TYPE_GAUSSIAN_BLUR{"gaussian-blur"};
 	const std::string FILTER_TYPE_GRAYSCALE{"grayscale"};
 	constexpr float FILTER_OPTION_INTENSITY_MIN{0.1f};
 	constexpr float FILTER_OPTION_INTENSITY_MAX{2.f};

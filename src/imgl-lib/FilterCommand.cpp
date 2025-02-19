@@ -16,7 +16,9 @@ namespace imgl {
 			Image img{data.inputPath.c_str()};
 			if (data.filterType == FILTER_TYPE_SHARPEN) {
 				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::SHARPEN);
-			} else if (data.filterType == FILTER_TYPE_BLUR) {
+			} else if (data.filterType == FILTER_TYPE_BOX_BLUR) {
+				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::BOX_BLUR);
+			} else if (data.filterType == FILTER_TYPE_GAUSSIAN_BLUR) {
 				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::GAUSSIAN_BLUR);
 			} else if (data.filterType == FILTER_TYPE_GRAYSCALE) {
 				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::GRAYSCALE);
@@ -27,7 +29,8 @@ namespace imgl {
 	bool FilterCommand::validFilterType() const {
 		static const std::unordered_set filterTypes = {
 			FILTER_TYPE_SHARPEN,
-			FILTER_TYPE_BLUR,
+			FILTER_TYPE_BOX_BLUR,
+			FILTER_TYPE_GAUSSIAN_BLUR,
 			FILTER_TYPE_GRAYSCALE
 		};
 		return filterTypes.find(data.filterType) != std::end(filterTypes);
