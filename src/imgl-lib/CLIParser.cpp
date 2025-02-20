@@ -34,6 +34,7 @@ namespace imgl {
 
 		} catch (const CLI::ParseError& err) {
 			app.exit(err);
+			throw std::runtime_error(fmt::format("Failed to parse arguments. Cause: {}", err.what()));
 		}
 	}
 } // namespace imgl

@@ -8,6 +8,7 @@
 #define IMAGEPROCESSOR_HPP
 
 #include <string_view>
+#include <spdlog/spdlog.h>
 
 #include "Defines.hpp"
 #include "Image.hpp"

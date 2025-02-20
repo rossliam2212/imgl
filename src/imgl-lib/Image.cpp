@@ -9,12 +9,7 @@
 namespace imgl {
     Image::Image(const char* path) {
 	    loadFromFile(path);
-
-    	if (data) {
-    		createTexture();
-    	} else {
-    		throw std::runtime_error("Error loading image");
-    	}
+    	createTexture();
     }
 
 	Image::~Image() {
@@ -45,8 +40,10 @@ namespace imgl {
     }
 
 	void Image::loadFromFile(const char* path) {
-    	// TODO Error handling
 		data = stbi_load(path, &width, &height, &channels, 0);
+    	if (!data) {
+    		throw std::runtime_error("Failed to load image");
+    	}
     }
 
 	void Image::createTexture() {
