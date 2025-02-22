@@ -21,12 +21,15 @@ namespace imgl {
         ~CLIParser() = default;
 
         void parse(int argc, char** argv);
+        void execute() const;
 
     private:
         CLI::App app;
         FilterCommandHandler filterHandler;
         TransformCommandHandler transformHandler;
         bool debug{false};
+
+        void setup();
     };
 } // namespace imgl
 

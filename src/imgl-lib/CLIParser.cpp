@@ -9,10 +9,7 @@
 namespace imgl {
 	CLIParser::CLIParser()
 		: app{"[imgl] A cli tool for manipulating images"} {
-
-		app.add_option(DEBUG_OPTION, debug, "Enable debugging logs");
-	 	filterHandler.setup(app);
-		transformHandler.setup(app);
+		setup();
 	}
 
 	void CLIParser::parse(int argc, char** argv) {
@@ -20,21 +17,35 @@ namespace imgl {
 			app.require_subcommand(1);
 			app.parse(argc, argv);
 
-			if (filterHandler) {
-				FilterCommand cmd{filterHandler.getData()};
-				cmd.execute();
-				std::exit(EXIT_SUCCESS);
+			if (debug) {
+				spdlog::set_level(spdlog::level::debug);
+				spdlog::debug("Debug logging enabled.");
 			}
-
-			if (transformHandler) {
-				TransformCommand cmd{transformHandler.getData()};
-				cmd.execute();
-				std::exit(EXIT_SUCCESS);
-			}
-
 		} catch (const CLI::ParseError& err) {
 			app.exit(err);
-			throw std::runtime_error(fmt::format("Failed to parse arguments. Cause: {}", err.what()));
+		} catch (const std::exception& err) {
+			throw std::runtime_error(err.what());
 		}
+	}
+
+	void CLIParser::execute() const {
+		if (filterHandler) {
+			FilterCommand cmd{filterHandler.getData()};
+			cmd.execute();
+			return;
+		}
+
+		if (transformHandler) {
+			TransformCommand cmd{transformHandler.getData()};
+			cmd.execute();
+		}
+	}
+
+	void CLIParser::setup() {
+		app.usage("Usage: ./imgl [OPTIONS] SUBCOMMAND [SUB_OPTIONS]");
+		app.add_flag(DEBUG_OPTION, debug, "Enable debugging logs");
+
+		filterHandler.setup(app);
+		transformHandler.setup(app);
 	}
 } // namespace imgl
