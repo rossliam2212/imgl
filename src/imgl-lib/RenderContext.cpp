@@ -14,8 +14,8 @@ namespace imgl {
 
 	void RenderContext::init() {
 		if (!glfwInit()) {
-			std::cerr << "Failed to initialize GLFW\n";
-			return;
+			spdlog::error("Failed to initialize GLFW");
+			throw std::runtime_error("Failed to initialize render context");
 		}
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -26,15 +26,15 @@ namespace imgl {
 
 		window = glfwCreateWindow(width, height, " ", nullptr, nullptr);
 		if (!window) {
-			std::cerr << "Failed to create GLFW window\n";
+			spdlog::error("Failed to create GLFW window");
 			glfwTerminate();
-			return;
+			throw std::runtime_error("Failed to initialize render context");
 		}
 		glfwMakeContextCurrent(window);
 
 		if (glewInit() != GLEW_OK) {
-			std::cerr << "Error: Failed to initialize GLEW" << std::endl;
-			return;
+			spdlog::error("Failed to initialize GLEW");
+			throw std::runtime_error("Failed to initialize render context");
 		}
 	}
 } // namespace imgl

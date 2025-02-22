@@ -51,7 +51,7 @@ namespace imgl {
 	void Shader::compile(const char* vertexPath, const char* fragmentPath) {
 	    id = glCreateProgram();
 	    if (!id) {
-	        std::cerr << "Failed to create shader program\n";
+	        spdlog::error("Failed to create shader program.");
 	        return;
 	    }
 
@@ -68,13 +68,13 @@ namespace imgl {
 	    glGetProgramiv(id, GL_LINK_STATUS, &result);
 	    if (!result) {
 	        glGetProgramInfoLog(id, sizeof(log), nullptr, log);
-	        std::cerr << "Error linking program\n";
+	        spdlog::error("Failed to link shader program.");
 	        return;
 	    }
 	    glValidateProgram(id);
 	}
 
-	void Shader::create(const char* code, unsigned int type) const {
+	void Shader::create(const char* code, const unsigned int type) const {
 	    const char* name{type == GL_VERTEX_SHADER ? "Vertex" : "Fragment"};
 	    unsigned int shader{glCreateShader(type)};
 
@@ -93,10 +93,9 @@ namespace imgl {
 	    glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
 	    if (!result) {
 	        glGetShaderInfoLog(shader, sizeof(log), nullptr, log);
-	        std::cerr << "Error compiling " << name << " shader";
+	    	spdlog::error("Failed to compile {} shader", name);
 	        glDetachShader(id, shader);
 	        glDeleteShader(shader);
-
 	        return;
 	    }
 	    glAttachShader(id, shader);

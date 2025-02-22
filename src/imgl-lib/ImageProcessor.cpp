@@ -56,15 +56,15 @@ namespace imgl {
 
 		if (outputPath.find(EXTENSION_PNG) != std::string::npos) {
 			stbi_write_png(outputPath.data(), width, height, channels, pixels, width * channels);
-			std::cout << "Image successfully written to " << outputPath << "\n";
+			spdlog::info("Image successfully written to: '{}'", outputPath);
 		} else if (outputPath.find(EXTENSION_JPG) != std::string::npos || outputPath.find(EXTENSION_JPEG) != std::string::npos) {
 			stbi_write_jpg(outputPath.data(), width, height, channels, pixels, 100);
-			std::cout << "Image successfully written to " << outputPath << "\n";
+			spdlog::info("Image successfully written to: '{}'", outputPath);
 		} else if (outputPath.find(EXTENSION_BMP) != std::string::npos) {
 			stbi_write_bmp(outputPath.data(), width, height, channels, pixels);
-			std::cout << "Image successfully written to " << outputPath << "\n";
+			spdlog::info("Image successfully written to: '{}'", outputPath);
 		} else {
-			std::cerr << "Error: Unsupported file format!" << std::endl;
+			spdlog::error("Failed to write image. Unsupported image format.");
 		}
 
 		delete[] pixels;

@@ -11,7 +11,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/glm.hpp>
-#include <iostream>
+#include <spdlog/spdlog.h>
 
 #include "FileUtils.hpp"
 
