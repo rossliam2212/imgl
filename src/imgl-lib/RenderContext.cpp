@@ -14,9 +14,10 @@ namespace imgl {
 
 	void RenderContext::init() {
 		if (!glfwInit()) {
-			spdlog::error("Failed to initialize GLFW");
+			spdlog::error("Failed to initialize GLFW.");
 			throw std::runtime_error("Failed to initialize render context");
 		}
+		spdlog::debug("Successfully initialized GLFW");
 
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -30,11 +31,17 @@ namespace imgl {
 			glfwTerminate();
 			throw std::runtime_error("Failed to initialize render context");
 		}
+		spdlog::debug("Successfully created GLFW window.");
 		glfwMakeContextCurrent(window);
 
 		if (glewInit() != GLEW_OK) {
 			spdlog::error("Failed to initialize GLEW");
 			throw std::runtime_error("Failed to initialize render context");
 		}
+		spdlog::debug("Successfully initialized GLEW.");
+		spdlog::debug("OpenGL Version: {}", reinterpret_cast<const char*>(glGetString(GL_VERSION)));
+		spdlog::debug("GLSL Version: {}", reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
+		spdlog::debug("GPU: {}", reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+		spdlog::debug("Vendor: {}", reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
 	}
 } // namespace imgl

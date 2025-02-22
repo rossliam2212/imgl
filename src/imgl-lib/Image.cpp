@@ -44,6 +44,7 @@ namespace imgl {
     	if (!data) {
     		throw std::runtime_error("Failed to load image");
     	}
+    	spdlog::debug("Successfully loaded image.");
     }
 
 	void Image::createTexture() {

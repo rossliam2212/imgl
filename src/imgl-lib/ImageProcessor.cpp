@@ -49,10 +49,13 @@ namespace imgl {
 	}
 
 	void ImageProcessor::outputImage(const FrameBuffer& fbo, const std::string_view outputPath, const int width, const int height, const int channels) {
+		spdlog::debug("Attempting to write image...");
+
 		const int format = channels == 4 ? GL_RGBA : GL_RGB;
 		auto* pixels = new unsigned char[width * height * 3];
 		glBindTexture(GL_TEXTURE_2D, fbo.getTexture());
 		glGetTexImage(GL_TEXTURE_2D, 0, format, GL_UNSIGNED_BYTE, pixels);
+		spdlog::debug("Image data: [width='{}', height='{}', channels='{}']", width, height, channels);
 
 		if (outputPath.find(EXTENSION_PNG) != std::string::npos) {
 			stbi_write_png(outputPath.data(), width, height, channels, pixels, width * channels);

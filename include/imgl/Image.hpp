@@ -10,6 +10,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
+#include <spdlog/spdlog.h>
 
 #include "stb-image/stb_image.h"
 

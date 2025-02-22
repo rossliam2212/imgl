@@ -12,8 +12,13 @@ namespace imgl {
 	}
 
 	void FilterCommand::execute() {
+		spdlog::debug("Executing filter subcommand...");
 		if (validFilterType() && validInputPath()) {
 			Image img{data.inputPath.c_str()};
+			spdlog::debug("CmdData: [type='{}',input='{}',output='{}',intensity='{}',show='{}']",
+				data.filterType, data.inputPath, data.outputPath, data.intensity, data.show);
+
+			spdlog::debug("Applying {} filter...", data.filterType);
 			if (data.filterType == FILTER_TYPE_SHARPEN) {
 				ImageProcessor::applyFilter(img, data.outputPath, data.intensity, FilterType::SHARPEN);
 			} else if (data.filterType == FILTER_TYPE_BOX_BLUR) {
@@ -25,9 +30,11 @@ namespace imgl {
 			}
 
 			if (data.show) {
+				spdlog::debug("Displaying image...");
 				const std::string cmd{"open " + data.outputPath};
 				std::system(cmd.c_str());
 			}
+			spdlog::debug("Successfully executed filter command.");
 		}
 	}
 
