@@ -14,6 +14,8 @@ set(LIB_HEADERS
         ../../include/imgl/FrameBuffer.hpp
         ../../include/imgl/Shader.hpp
         ../../include/imgl/RenderUtils.hpp
+        ../../include/imgl/MetadataCommand.hpp
+        ../../include/imgl/MetadataCommandHandler.hpp
 )
 
 set(LIB_SOURCES
@@ -29,6 +31,8 @@ set(LIB_SOURCES
         FrameBuffer.cpp
         Shader.cpp
         RenderUtils.cpp
+        MetadataCommand.cpp
+        MetadataCommandHandler.cpp
 
         ../../lib/stb-image/stb_image.cpp
         ../../lib/stb-image/stb_image_write.cpp

@@ -27,6 +27,10 @@ namespace imgl {
 		float angle;
 		bool show;
 	};
+
+	struct MetadataCommandData {
+		std::string inputPath;
+	};
 } // namespace imgl
 
 #endif //COMMANDDATA_HPP

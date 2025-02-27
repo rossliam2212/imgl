@@ -33,6 +33,10 @@ namespace imgl {
 	inline const char* TRANSFORM_OPTION_ANGLE{"--angle"};
 	inline const char* TRANSFORM_OPTION_WIDTH{"--width"};
 	inline const char* TRANSFORM_OPTION_HEIGHT{"--height"};
+	inline const char* TRANSFORM_OPTION_SHOW{"--show"};
+
+	inline const char* METADATA_CMD{"metadata"};
+	inline const char* METADATA_OPTION_INPUT{"input"};
 
 	inline const char* DEFAULT_VERT_SHADER{"../../../resources/shaders/default_vertex.glsl"};
 	inline const char* SHARPEN_FRAG_SHADER{"../../../resources/shaders/sharpen_fragment.glsl"};
